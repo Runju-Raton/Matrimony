@@ -30,12 +30,12 @@
                         @foreach($members as $member)
                             <div class="item">
                                 <div class="card member-card">
-                                    <img  src="{{asset('images/banner1.jpg')}}" class="card-img-top" alt="Member 1">
+                                    <img  src="{{asset($member->pic?$member->pic:'images/default_profile.jpg')}}" class="card-img-top" alt="Member 1">
                                     <div class="card-body">
                                         <h5 class="card-title">{{$member->name}}</h5>
                                         <p class="card-text">{{$member->age}}</p>
                                         <p class="card-text">{{$member->gender}}</p>
-                                        <a href="#" class="btn btn-primary">More profile details</a>
+                                        <a href="{{route('profile.details',['id'=>$member->id])}}" class="btn btn-primary">More profile details</a>
 
                                     </div>
                                 </div>

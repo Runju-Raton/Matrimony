@@ -9,7 +9,7 @@
             background-position: center;
             align-items: center;
             padding-top: 50px;
-            display: flex !important;
+            display: flex;
             align-items: center !important;
             justify-content: center;
         }
@@ -33,6 +33,10 @@
         .pagination span {
             font-size: 12px; /* Adjust the font size as needed */
         }
+
+        .content {
+            display: block; !important;
+        }
     </style>
 @endsection
 
@@ -45,10 +49,11 @@
                     <hr>
                 </div>
             </div>
-            <div class="row d-flex justify-content-enter">
+            <div class="row">
                 <div class="col-md-9">
-                    <div class="row">
-                    @foreach($members as $member)
+                    @if(count($members)>0)
+                        <div class="row">
+                        @foreach($members as $member)
                             <div class="col-md-3 item mb-4">
                                 <div class="card member-card">
                                     @if($member->pic)
@@ -61,7 +66,7 @@
                                         <h5 class="card-title">{{$member->name}}</h5>
                                         <p class="card-text">{{$member->age}}</p>
                                         <p class="card-text">{{$member->gender}}</p>
-                                        <a href="#" class="btn btn-primary">More profile details</a>
+                                        <a href="{{route('profile.details',['id'=>$member->id])}}" class="btn btn-primary">More profile details</a>
 
                                     </div>
                                 </div>
@@ -71,6 +76,11 @@
                            {{$members->links()}}
                         </div>
                     </div>
+                    @else
+                        <div>
+                            <h1 class="center">No Data Found. Please Filter Again.</h1>
+                        </div>
+                    @endif
                 </div>
                 <div class="col-md-3">
                     <form style="width: 100%;" method="GET" action="{{route('all.members')}}">

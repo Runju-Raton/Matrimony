@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -74,4 +75,21 @@ class MemberController extends Controller
             return redirect()->back()->withInput();
         }
     }
+    public function profileDetails($id){
+        $member = Member::find($id);
+        return view('admin.members.profile-details',compact('member'));
+    }
+    public function userProfileDetails($id){
+        $user = User::find($id);
+        $members = Member::where('created_by',$id)->paginate(10);
+        return view('admin.members.user-profile',compact('user','members'));
+    }
+    public function userMemberDelete($id){
+        $member = Member::where('id',$id)->where('created_by',Auth::user()->id)->delete();
+        if(!$member){
+            return redirect()->back()->with('error','You have no access right.');
+        }
+        return redirect()->back()->with('success','Member delete successfully.');
+    }
+
 }

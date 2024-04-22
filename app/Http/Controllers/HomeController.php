@@ -21,7 +21,7 @@ class HomeController extends Controller
             $members = $members->whereBetween('age', [$age_from, $age_to]);
         }
         if($religion){
-            $members = $members-> where('religion',$religion);
+            $members = $members->where('religion',$religion);
         }
         if($gender){
             $members = $members->where('gender',$gender);
