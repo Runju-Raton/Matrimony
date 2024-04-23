@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index(){
+        if(Auth::user()->user_type=='admin'){
+            return redirect('/dashboard');
+        }
         $members = Member::where('status',1)->get();
         return view('home.homepage',compact('members'));
     }

@@ -70,7 +70,7 @@ class MemberController extends Controller
             if($id){
                 return redirect('/members/list')->with('success','Member information update successfully.');
             }
-            return redirect('/home');
+            return redirect('/user-profile/details/'.Auth::user()->id);
         } catch (\Exception $e){
             return redirect()->back()->withInput();
         }

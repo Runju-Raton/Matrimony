@@ -12,8 +12,8 @@
         </ul>
         <form class="form-inline my-2 my-lg-0">
             @auth
-            <span  class="text-primary">Name: {{Auth::user()->name}}</span><a href="{{route('userProfile.details',['id'=>Auth::user()->id])}}" class="btn btn-outline-primary mx-2"> <i class="fa fa-user"></i> view profile</a>
-            <a href="{{route('create.member')}}" class="btn btn-outline-success mx-2"> <i class="fa fa-plus"></i> Add Member</a>
+            <span  class="text-primary">Name: {{Auth::user()->name}}</span><a href="{{route('userProfile.details',['id'=>Auth::user()->id])}}" class="btn btn-outline-primary mx-2"> <i class="fa fa-user"></i> View Profile</a>
+            <a href="{{route('create.member')}}" class="btn btn-outline-success mx-2"> <i class="fa fa-plus"></i> Add Bride/Groom</a>
             <a  href="{{route('all.members')}}" class="btn btn-outline-warning mx-2"><i class="fa fa-users"> </i> All Members </a>
             <a href="{{ route('logout') }}" class="btn btn-outline-danger mx-2 " type="submit">Logout <i class="fa fa-arrow-right" aria-hidden="true"></i> </a>
             @else

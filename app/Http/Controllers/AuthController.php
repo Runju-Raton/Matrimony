@@ -15,7 +15,19 @@ class AuthController extends Controller
     }
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $data['total_users'] = User::get()->count();
+        $data['active_users'] = User::where('status',1)->get()->count();
+        $data['pending_users'] = User::where('status',0)->get()->count();
+
+        $data['total_brides'] = Member::where('gender','male')->get()->count();
+        $data['active_brides'] = Member::where('gender','male')->where('status',1)->get()->count();
+        $data['pending_brides'] = Member::where('gender','male')->where('status',0)->get()->count();
+
+        $data['total_grooms'] = Member::where('gender','female')->get()->count();
+        $data['active_grooms'] = Member::where('gender','female')->where('status',1)->get()->count();
+        $data['pending_grooms'] = Member::where('gender','female')->where('status',0)->get()->count();
+
+        return view('admin.dashboard',$data);
     }
 
     public function login(Request $request){
