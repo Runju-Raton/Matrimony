@@ -1,15 +1,21 @@
 @extends('main')
 @section('content')
-    <div class="container" style="padding-top: 80px; margin-bottom: 20px;">
+    <div class="container-fluid" style="padding-top: 80px; margin-bottom: 20px;">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <h2 class="text-center"> {{$member->gender=='male'?'Groom Details':''}} {{$member->gender=='female'?'Bride Details':''}}</h2>
                     </div>
                     <div class="card-body">
-                        <div class="row align-items-center justify-content-center">
-                            <div class="col-md-4">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-md-6 text-center">
+                                <img style="width: 300px; height: 300px; border-radius: 50%;" src="{{asset($member->pic?$member->pic:'images/default_profile.jpg')}}" alt="">
+                                <div>
+                                    <h3>Name: {{$member->name}}</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
                                 <p><b>Name :</b> <i>{{$member->name}}</i></p>
                                 <p><b>Gender :</b> <i>{{$member->gender}}</i></p>
                                 <p><b>Age :</b> <i>{{$member->age}}</i></p>
@@ -21,9 +27,6 @@
                                 <p><b>Mobile :</b> <i>{{$member->mobile}}</i></p>
                                 <p><b>Qualification :</b> <i>{{$member->qualification}}</i></p>
                                 <p><b>Occupation :</b> <i>{{$member->occupation}}</i></p>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <img style="width: 300px; height: 300px; border-radius: 50%;" src="{{asset($member->pic?$member->pic:'images/default_profile.jpg')}}" alt="">
                             </div>
                         </div>
                         <div class="row justify-content-end mt-2">

@@ -64,10 +64,16 @@
                                     @endif
                                     <div class="card-body">
                                         <h5 class="card-title">{{$member->name}}</h5>
-                                        <p class="card-text">{{$member->age}}</p>
-                                        <p class="card-text">{{$member->gender}}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="text-left">
+                                                <p class=""> <span class="font-weight-bold">Age: </span> {{$member->age}}</p>
+                                                <p class=""> <span class="font-weight-bold">Gender: </span>   {{ucfirst($member->gender)}}</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p>{{ucfirst($member->religion)}}</p>
+                                            </div>
+                                        </div>
                                         <a href="{{route('profile.details',['id'=>$member->id])}}" class="btn btn-primary">More profile details</a>
-
                                     </div>
                                 </div>
                             </div>
@@ -89,28 +95,36 @@
                                 <p>Filter BY </p>
                             </div>
                             <div class="col-md-12 d-flex my-2">
-                                <input type="number" name="age_from" placeholder="Age From" class="form-control mr-1">
-                                <input type="number" name="age_to" placeholder="Age To" class="form-control ml-1">
+                                <input type="number" name="age_from" placeholder="Age From" class="form-control mr-1" value="{{request()->query("age_from")}}">
+                                <input type="number" name="age_to" placeholder="Age To" class="form-control ml-1" value="{{request()->query("age_to")}}">
                             </div>
                             <div class="col-md-12 d-flex my-2">
-                                <select name="religion" class="form-control">
+                                <select name="religion" class="form-control" value="{{request()->query("religion")}}">
                                     <option value="">Select Religion</option>
-                                    <option value="muslim">Muslim</option>
-                                    <option value="hindu">Hindu</option>
-                                    <option value="christian">Christian</option>
-                                    <option value="sikh">Sikh</option>
-                                    <option value="parsi">Parsi</option>
-                                    <option value="jewish">Jewish</option>
-                                    <option value="buddhist">Buddhist</option>
-                                    <option value="spiritual">Spiritual</option>
+                                    <option value="muslim" {{request()->query("religion")=='muslim'?'selected':''}}>Muslim</option>
+                                    <option value="hindu" {{request()->query("religion")=='hindu'?'selected':''}}>Hindu</option>
+                                    <option value="christian" {{request()->query("religion")=='christian'?'selected':''}}>Christian</option>
+                                    <option value="sikh" {{request()->query("religion")=='sikh'?'selected':''}}>Sikh</option>
+                                    <option value="parsi" {{request()->query("religion")=='parsi'?'selected':''}}>Parsi</option>
+                                    <option value="jewish" {{request()->query("religion")=='jewish'?'selected':''}}>Jewish</option>
+                                    <option value="buddhist" {{request()->query("religion")=='buddhist'?'selected':''}}>Buddhist</option>
+                                    <option value="spiritual" {{request()->query("religion")=='spiritual'?'selected':''}}>Spiritual</option>
                                     <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12 d-flex my-2">
+                                <select name="nationality" class="form-control">
+                                    <option value="">Select Nationality </option>
+                                    <option value="bangladeshi" {{request()->query('nationality')=='bangladeshi'?'selected':''}}>Bangladeshi</option>
+                                    <option value="indian" {{request()->query('nationality')=='indian'?'selected':''}}>Indian</option>
+                                    <option value="pakistani" {{request()->query('nationality')=='pakistani'?'selected':''}}>Pakistani</option>
                                 </select>
                             </div>
                             <div class="col-md-12 d-flex my-2">
                                 <select  name="gender"  class="form-control">
                                     <option value="">Select Gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option value="male" {{request()->query("gender")=='male'?'selected':''}}>Male</option>
+                                    <option value="female" {{request()->query("gender")=='female'?'selected':''}}>Female</option>
                                 </select>
                             </div>
                             <div class="col-md-1">

@@ -33,10 +33,16 @@
                                     <img  src="{{asset($member->pic?$member->pic:'images/default_profile.jpg')}}" class="card-img-top" alt="Member 1">
                                     <div class="card-body">
                                         <h5 class="card-title">{{$member->name}}</h5>
-                                        <p class="card-text">{{$member->age}}</p>
-                                        <p class="card-text">{{$member->gender}}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="text-left">
+                                                <p class=""> <span class="font-weight-bold">Age: </span> {{$member->age}}</p>
+                                                <p class=""> <span class="font-weight-bold">Gender: </span>   {{ucfirst($member->gender)}}</p>
+                                            </div>
+                                            <div class="text-right">
+                                                <p>{{ucfirst($member->religion)}}</p>
+                                            </div>
+                                        </div>
                                         <a href="{{route('profile.details',['id'=>$member->id])}}" class="btn btn-primary">More profile details</a>
-
                                     </div>
                                 </div>
                             </div>

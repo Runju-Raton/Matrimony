@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index(){
-        if(Auth::user()->user_type=='admin'){
+        if(Auth::user() && Auth::user()->user_type=='admin'){
             return redirect('/dashboard');
         }
         $members = Member::where('status',1)->get();
@@ -20,6 +20,7 @@ class HomeController extends Controller
         $age_to = intval(isset($request->age_to)?$request->age_to:0);
         $religion = isset($request->religion)?$request->religion:'';
         $gender = isset($request->gender)?$request->gender:'';
+        $nationality = isset($request->nationality)?$request->nationality:'';
         $members = Member::where('status',1);
         if($age_from && $age_to){
             $members = $members->whereBetween('age', [$age_from, $age_to]);
@@ -29,6 +30,9 @@ class HomeController extends Controller
         }
         if($gender){
             $members = $members->where('gender',$gender);
+        }
+        if($nationality){
+            $members = $members->where('nationality',$nationality);
         }
         $members = $members->paginate(12);
         return view('home.all-members',compact('members'));
