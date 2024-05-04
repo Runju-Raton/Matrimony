@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function userList(){
-        $users = User::paginate(10);
+        $users = User::orderBy('updated_at','desc')->paginate(10);
         return view('admin.users.list',compact('users'));
     }
     public function userStatus(Request $request,$id){
@@ -23,7 +23,7 @@ class AdminController extends Controller
         }
     }
     public function membersList(){
-        $members = Member::paginate(10);
+        $members = Member::orderBy('updated_at','desc')->paginate(10);
         return view('admin.members.member-list',compact('members'));
     }
     public function memberDelete($id){
