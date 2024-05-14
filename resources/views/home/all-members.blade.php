@@ -37,6 +37,12 @@
         .content {
             display: block; !important;
         }
+
+        @media screen and (max-width:480px){
+            .footer{
+                height: 550px;
+            }
+        }
     </style>
 @endsection
 
@@ -50,7 +56,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-9 order-2">
                     @if(count($members)>0)
                         <div class="row">
                         @foreach($members as $member)
@@ -88,7 +94,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 order-1">
                     <form style="width: 100%;" method="GET" action="{{route('all.members')}}">
                         <div class="col-md-12 mb-4">
                             <div class="col-md-12">

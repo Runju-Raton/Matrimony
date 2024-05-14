@@ -1,7 +1,11 @@
 @extends('main')
 @section('custom-style')
     <style>
-
+        @media screen and (max-width:480px){
+            .footer{
+                height: 550px;
+            }
+        }
     </style>
 @endsection
 @section('content')
@@ -156,10 +160,10 @@
                 autoplayTimeout:5000,
                 responsive:{
                     0:{
-                        items:4
+                        items:1
                     },
                     600:{
-                        items:4
+                        items:2
                     },
                     1000:{
                         items:4
