@@ -50,7 +50,8 @@
                                         <select name="material_status" class="form-control">
                                             <option value="">Select</option>
                                             <option value="married" {{old('material_status')=='married'?'selected':''}}>Married</option>
-                                            <option value="unmarried" {{old('material_status')=='unmarried'?'selected':''}}>UnMarried</option>
+                                            <option value="divorced" {{old('material_status')=='divorced'?'selected':''}}>Divorced</option>
+                                            <option value="widowed" {{old('material_status')=='widowed'?'selected':''}}>Widowed</option>
                                         </select>
                                         @if ($errors->has('material_status'))
                                             <span class="text-danger">{{ $errors->first('material_status') }}</span>
