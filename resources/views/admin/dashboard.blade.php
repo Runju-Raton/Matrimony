@@ -21,6 +21,11 @@
         .card h2{
             border: 1px solid #fff;
         }
+        @media screen and (max-width:480px){
+            .card{
+               margin: 10px 0;
+            }
+        }
     </style>
 @endsection
 @section('content')

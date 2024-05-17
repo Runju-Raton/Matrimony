@@ -20,6 +20,14 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.6); /* Black background with 70% opacity */
         }
+        @media screen and (max-width:480px){
+            .footer{
+                height: 550px;
+            }
+            .content {
+                padding-top: 140px;
+            }
+        }
     </style>
 @endsection
 @section('content')

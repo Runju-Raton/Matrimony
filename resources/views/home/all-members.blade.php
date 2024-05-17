@@ -42,6 +42,15 @@
             .footer{
                 height: 550px;
             }
+            @if(\Illuminate\Support\Facades\Auth::user())
+               .content{
+                    padding-top: 280px;
+                }
+            @else
+                .content{
+                    padding-top: 150px;
+                }
+            @endif
         }
     </style>
 @endsection

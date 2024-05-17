@@ -1,4 +1,19 @@
 @extends('main')
+@section('custom-style')
+    <style>
+        @media screen and (max-width:480px){
+            .footer{
+                height: 550px;
+            }
+            .content{
+                padding-top: 220px;
+            }
+            .col-md-6{
+                margin: 5px 0;
+            }
+        }
+    </style>
+@endsection
 @section('content')
     <div class="container" style="padding-top: 80px; margin-bottom: 20px;">
         <div class="row">

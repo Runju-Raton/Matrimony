@@ -1,12 +1,28 @@
 @extends('main')
 @section('custom-style')
+    @if(Auth::user())
     <style>
         @media screen and (max-width:480px){
             .footer{
                 height: 550px;
             }
+            .content{
+                padding-top: 220px;
+            }
         }
     </style>
+    @else
+        <style>
+            @media screen and (max-width:480px){
+                .footer{
+                    height: 550px;
+                }
+                .content{
+                    padding-top: 120px;
+                }
+            }
+        </style>
+    @endif
 @endsection
 @section('content')
     <div class="container-fluid">

@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index(){
-        if(Auth::user() && Auth::user()->user_type=='admin'){
-            return redirect('/dashboard');
-        }
+//        if(Auth::user() && Auth::user()->user_type=='admin'){
+//            return redirect('/dashboard');
+//        }
         $members = Member::where('status',1)->get();
         return view('home.homepage',compact('members'));
     }

@@ -17,9 +17,12 @@
                 <a href="{{route('create.member')}}" class="btn btn-outline-success mx-2 my-2"> <i class="fa fa-plus"></i> Add Bride/Groom</a>
             @endif
             <a  href="{{route('all.members')}}" class="btn btn-outline-warning mx-2 my-2"><i class="fa fa-users"> </i> All Members </a>
+            @if(Auth::user()->user_type == 'admin')
+                <a  href="/dashboard" class="btn btn-outline-secondary mx-2 my-2"><i class="fa fa-arrow-left"> </i> Go To Dashboard </a>
+            @endif
             <a href="{{ route('logout') }}" class="btn btn-outline-danger mx-2 my-sm-2 my-2" type="submit">Logout <i class="fa fa-arrow-right" aria-hidden="true"></i> </a>
             @else
-            <a href="{{ route('register') }}" class="btn btn-outline-danger my-2 mx-2 my-sm-0 mb-sm-2 my-2" type="submit"><i class="fa fa-users" aria-hidden="true"></i> Register</a>
+            <a href="{{ route('register') }}" class="btn btn-outline-danger my-2 mx-2  mb-sm-2 my-2" type="submit"><i class="fa fa-users" aria-hidden="true"></i> Register</a>
             <a href="{{route('login')}}" class="btn btn-outline-primary mx-2 mb-sm-2 my-2" type="submit">Login <i class="fa fa-arrow-right" aria-hidden="true"></i> </a>
             @endauth
         </form>

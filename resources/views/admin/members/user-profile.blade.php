@@ -1,4 +1,16 @@
 @extends('main')
+@section('custom-style')
+    <style>
+        @media screen and (max-width:480px){
+            .footer{
+                height: 550px;
+            }
+            .content{
+                padding-top: 220px;
+            }
+        }
+    </style>
+@endsection
 @section('content')
     <div class="container-fluid" style="padding-top: 80px; margin-bottom: 20px;">
         <div class="row">
@@ -14,7 +26,7 @@
                                 <div>
                                     <h3>Name: {{$user->name}}</h3>
                                     <h4>Email: {{$user->email}}</h4>
-                                    <a href="{{route('edit.profile',['id'=>$user->id])}}" class="btn btn-primary"><i class="fa fa-edit"></i> Edit Profile</a>
+                                    <a href="{{route('edit.profile',['id'=>$user->id])}}" class="btn btn-primary mb-2"><i class="fa fa-edit"></i> Edit Profile</a>
                                 </div>
                             </div>
                             @if(count($members)>0)
