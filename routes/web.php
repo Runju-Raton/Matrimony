@@ -18,6 +18,7 @@ Route::get('/all-members',[\App\Http\Controllers\HomeController::class,'seeAllMe
 
 
 Route::post('/store-member',[\App\Http\Controllers\MemberController::class,'storeMember'])->name('store.member');
+Route::post('/store-user',[\App\Http\Controllers\MemberController::class,'storeUser'])->name('store.user');
 
 
 Route::group(['middleware'=>'guest'],function(){
@@ -28,7 +29,9 @@ Route::group(['middleware'=>'guest'],function(){
     Route::post('register',[\App\Http\Controllers\AuthController::class,'register'])->name('register');
 });
 
-
+Route::middleware('save.profile.url')->group(function () {
+    Route::get('/user-profile/details/{id}',[\App\Http\Controllers\MemberController::class,'userProfileDetails'])->name('userProfile.details');
+});
 
 Route::group(['middleware'=>'auth'],function(){
     Route::get('home',[\App\Http\Controllers\AuthController::class,'home'])->name('home');
@@ -40,8 +43,10 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('member/status/{id}',[\App\Http\Controllers\AdminController::class,'memberStatus'])->name('member.status')->middleware('admin');
     Route::get('/create-member', function () {return view('admin.members.create-member');})->name('create.member');
     Route::get('/edit-member/{id}', [\App\Http\Controllers\MemberController::class,'editMember'])->name('edit.member')->middleware('admin');
+    Route::get('/edit-profile/{id}', [\App\Http\Controllers\MemberController::class,'editProfile'])->name('edit.profile');
     Route::get('/profile/details/{id}',[\App\Http\Controllers\MemberController::class,'profileDetails'])->name('profile.details');
     Route::get('/user-profile/details/{id}',[\App\Http\Controllers\MemberController::class,'userProfileDetails'])->name('userProfile.details');
     Route::post('user/member/delete/{id}',[\App\Http\Controllers\MemberController::class,'userMemberDelete'])->name('userMember.delete');
     Route::get('logout',[\App\Http\Controllers\AuthController::class,'logout'])->name('logout');
 });
+

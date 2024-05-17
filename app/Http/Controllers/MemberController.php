@@ -9,11 +9,20 @@ use Illuminate\Support\Facades\Auth;
 
 class MemberController extends Controller
 {
-    //edit
+    //edit member
     public function editMember($id){
         try{
             $member = Member::find($id);
             return view('admin.members.edit-member',compact('member'));
+        }catch (\Exception $e){
+            dd($e->getMessage());
+        }
+    }
+    //edit profile
+    public function editProfile($id){
+        try{
+            $user = User::find($id);
+            return view('admin.members.edit-profile',compact('user'));
         }catch (\Exception $e){
             dd($e->getMessage());
         }
@@ -90,6 +99,34 @@ class MemberController extends Controller
             return redirect()->back()->with('error','You have no access right.');
         }
         return redirect()->back()->with('success','Member delete successfully.');
+    }
+    public function storeUser(Request $request){
+
+        $request->validate([
+            'name'=>'required',
+        ]);
+        try {
+            $id = isset($request->id)?$request->id:'';
+            if($id){
+                $user = User::find($id);
+            }
+            $user->name = $request->name;
+
+            if($request->hasFile('pic')){
+                $image = $request->file('pic');
+                $imageName = $user->name.'_'.time().'.'.$image->extension();
+                $folderPath = 'users/';
+
+                $image->move(public_path($folderPath), $imageName);
+
+                $user->pic = $folderPath.$imageName;
+            }
+            $user->save();
+
+            return redirect('/user-profile/details/'.Auth::user()->id);
+        } catch (\Exception $e){
+            return redirect()->back()->withInput();
+        }
     }
 
 }

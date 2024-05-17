@@ -14,6 +14,7 @@
                                 <div>
                                     <h3>Name: {{$user->name}}</h3>
                                     <h4>Email: {{$user->email}}</h4>
+                                    <a href="{{route('edit.profile',['id'=>$user->id])}}" class="btn btn-primary"><i class="fa fa-edit"></i> Edit Profile</a>
                                 </div>
                             </div>
                             @if(count($members)>0)

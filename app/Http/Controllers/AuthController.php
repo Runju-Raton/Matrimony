@@ -6,6 +6,7 @@ use App\Models\Member;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -42,6 +43,9 @@ class AuthController extends Controller
         if(\Auth::attempt($request->only('email','password'))){
             if(Auth::user()->user_type=='admin'){
                 return redirect('/dashboard');
+            }
+            if (Session::has('url.intended')) {
+                return redirect()->intended();
             }
             return redirect('/home');
         }
